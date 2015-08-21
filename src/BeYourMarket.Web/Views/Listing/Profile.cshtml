@@ -1,0 +1,56 @@
+﻿@using Microsoft.Practices.Unity;
+@using Microsoft.Practices.Unity.Configuration;
+
+@model BeYourMarket.Web.Models.ProfileModel
+
+@{
+    ViewBag.Title = "[[[Profile]]]";
+}
+
+@section Styles {
+
+}
+
+<div class="body-content">
+
+    <!-- Start Page Heading -->
+    <div class="section panel-header ">
+        <div class="container-fluid">
+            <div class="col-md-12">
+                <img class="pull-left img-circle profile-picture" src="@BeYourMarket.Web.Utilities.ImageHelper.GetUserProfileImagePath(Model.User.Id)" />
+
+                <h3>@Model.User.FullName</h3>
+                <p class="lead text-lighten">
+                    [[[Joined since]]] @Model.User.RegisterDate.ToShortDateString()
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <div class="container body-content">
+
+        <div class="container-fluid mrg-tb">
+            <div class="row">
+                <div class="col-md-12 section-title ">
+                    <h4>[[[Listings]]]</h4>
+                </div>
+            </div>
+
+
+            <div class="row-eq-height">
+                    @foreach (var item in Model.Listings)
+                    {
+                        <div class="col-sm-6 col-md-4 col-lg-3">
+                            @Html.Partial("~/Views/Listing/_ListingCard.cshtml", item)
+                        </div>
+                    }
+                </div>
+
+        </div>
+    </div>
+
+</div>
+
+@section Scripts {
+
+}
